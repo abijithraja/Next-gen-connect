@@ -1,0 +1,266 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Next Gen Connect</title>
+    <style>
+        /* General Reset */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Arial', sans-serif;
+            background-color: #f0f0f0;
+            color: #333;
+            line-height: 1.6;
+            scroll-behavior: smooth; 
+        }
+
+        
+        nav {
+            background-color: #2f3e46;
+            color: white;
+            padding: 15px 20px;
+            display: flex;
+            justify-content: space-between; 
+            align-items: center;
+            position: fixed;
+            width: 100%;
+            top: 0;
+            left: 0;
+            z-index: 1000;
+        }
+        
+        nav .logo {
+            font-size: 1.4rem;
+            font-weight: 600;
+            color: white;
+            text-decoration: none;
+            transition: color 0.3s ease;
+        }
+        
+        nav .logo:hover {
+            color: #5bc0be; 
+        }
+
+        nav a {
+            color: white;
+            text-decoration: none;
+            margin-right: 20px;
+            font-size: 1.1rem;
+            font-weight: 600;
+            transition: color 0.3s ease;
+        }
+
+        nav a:hover {
+            color: #5bc0be; /
+        }
+
+        
+        nav a.active {
+            color: #f8b400;
+        }
+
+        
+        header {
+            background: linear-gradient(135deg, #5bc0be, #2f3e46); 
+            color: white;
+            padding: 150px 20px;
+            text-align: center;
+            background-size: cover;
+        }
+
+        header h1 {
+            font-size: 4rem;
+            font-weight: bold;
+            margin-bottom: 20px;
+        }
+
+        header p {
+            font-size: 1.3rem;
+            margin-bottom: 30px;
+            opacity: 0.8;
+        }
+
+        header .cta-button {
+            background-color: #5bc0be;
+            color: white;
+            padding: 15px 40px;
+            text-decoration: none;
+            font-size: 1.2rem;
+            border-radius: 30px;
+            transition: background-color 0.3s ease, transform 0.3s ease;
+        }
+
+        header .cta-button:hover {
+            background-color: #3bb7a0;
+            transform: translateY(-3px);
+        }
+
+        section {
+            padding: 80px 20px;
+            text-align: center;
+        }
+
+        section h2 {
+            font-size: 2.8rem;
+            margin-bottom: 40px;
+            font-weight: 600;
+            color: #2f3e46;
+        }
+
+        section p {
+            font-size: 1.2rem;
+            margin-bottom: 50px;
+            opacity: 0.8;
+            max-width: 800px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        .service-cards {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 30px;
+            margin-top: 50px;
+        }
+
+        .service-card {
+            background-color: white;
+            padding: 30px;
+            border-radius: 10px;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+            transition: box-shadow 0.3s ease, transform 0.3s ease;
+            text-align: center;
+            cursor: pointer;
+        }
+
+        .service-card:hover {
+            box-shadow: 0 6px 18px rgba(0, 0, 0, 0.2);
+            transform: translateY(-5px);
+        }
+
+        .service-card h3 {
+            font-size: 2rem;
+            margin-bottom: 20px;
+            color: #2f3e46;
+        }
+
+        .service-card p {
+            font-size: 1.1rem;
+            opacity: 0.8;
+            margin-bottom: 30px;
+        }
+
+        .service-card a {
+            background-color: #5bc0be;
+            color: white;
+            padding: 12px 30px;
+            text-decoration: none;
+            font-size: 1.1rem;
+            border-radius: 30px;
+            transition: background-color 0.3s ease;
+        }
+
+        .service-card a:hover {
+            background-color: #3bb7a0;
+        }
+
+        footer {
+            background-color: #2f3e46;
+            color: white;
+            text-align: center;
+            padding: 50px 20px;
+            font-size: 1.1rem;
+        }
+
+        footer a {
+            color: #6bb5b1;
+            text-decoration: none;
+        }
+
+        footer a:hover {
+            text-decoration: underline;
+        }
+
+        @media (max-width: 768px) {
+            .service-cards {
+                grid-template-columns: 1fr;
+            }
+
+            header h1 {
+                font-size: 2.5rem;
+            }
+
+            .cta-button {
+                padding: 10px 25px;
+                font-size: 1rem;
+            }
+
+            section p {
+                font-size: 1.1rem;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    
+    <nav>
+        <a href="#" class="logo">Next Gen Connect</a>
+        <div>
+            <a href="#services">Services</a>
+            <a href="#about">About</a>
+            <a href="#contact">Contact</a>
+        </div>
+    </nav>
+
+    <header>
+        <h1>Next Gen Connect</h1>
+        <p>Bridging the gap between people who use Sign Language and others through innovative technology.</p>
+    </header>
+
+    
+    <section id="services">
+        <h2>Our Services</h2>
+        <p>We provide cutting-edge solutions to help bridge the gap between those who use Sign Language and others. Select from our services to get started.</p>
+        
+        <div class="service-cards">
+            <div class="service-card">
+                <h3>ISL to Text</h3>
+                <p>Convert ISL gestures into readable text for easier communication.</p>
+                <a href="webcame.html">Start Now</a>
+            </div>
+
+            <div class="service-card">
+                <h3>ISL to Speech</h3>
+                <p>Translate ISL gestures into spoken language for seamless communication.</p>
+                <a href="#isl-to-speech">Start Now</a>
+            </div>
+
+            <div class="service-card">
+                <h3>Text to ISL</h3>
+                <p>Convert written text into ISL gestures to help people communicate effectively.</p>
+                <a href="#text-to-isl">Start Now</a>
+            </div>
+
+            <div class="service-card">
+                <h3>Speech to ISL</h3>
+                <p>Convert speech into ISL gestures for effective interaction with the hearing impaired.</p>
+                <a href="#speech-to-isl">Start Now</a>
+            </div>
+        </div>
+    </section>
+
+    
+    <footer>
+        <p>Connect with us on <a href="https://linkedin.com" target="_blank">LinkedIn</a> | <a href="https://github.com" target="_blank">GitHub</a></p>
+        <p>&copy; 2025 Next Gen Connect. All Rights Reserved.</p>
+    </footer>
+
+</body>
+</html>

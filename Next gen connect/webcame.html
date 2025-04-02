@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Hand Detection</title>
+    <script src="https://cdn.jsdelivr.net/npm/@tensorflow/tfjs"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@tensorflow-models/handpose"></script>
+    <style>
+        /* Global Reset */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        /* Body Styling */
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: #f8f9fa;
+            color: #343a40;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            flex-direction: column;
+            text-align: center;
+            padding: 20px;
+        }
+
+        /* Heading Styling */
+        h1 {
+            font-size: 2.5rem;
+            color: #5a5a5a;
+            margin-bottom: 30px;
+            letter-spacing: 1px;
+            font-weight: 600;
+            text-transform: uppercase;
+            text-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+        }
+
+        /* Video Element Styling */
+        #video {
+            border-radius: 15px;
+            border: 2px solid #ddd;
+            box-shadow: 0 6px 12px rgba(0, 0, 0, 0.1);
+            margin-bottom: 30px;
+        }
+
+        /* Hand Detection Status Styling */
+        #handStatus {
+            font-size: 1.2rem;
+            font-weight: 500;
+            color: #fff;
+            background-color: #28a745;
+            padding: 12px 25px;
+            border-radius: 30px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            transition: all 0.3s ease;
+            letter-spacing: 1px;
+            text-transform: uppercase;
+        }
+
+        #handStatus.not-detected {
+            background-color: #dc3545;
+        }
+
+        /* Hover effect for status */
+        #handStatus:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 8px 16px rgba(0, 0, 0, 0.15);
+        }
+
+        /* Responsive design */
+        @media (max-width: 768px) {
+            h1 {
+                font-size: 2rem;
+            }
+
+            #video {
+                width: 100%;
+                max-width: 600px;
+            }
+
+            #handStatus {
+                font-size: 1rem;
+                padding: 10px 20px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <h1>Hand Detection</h1>
+    <video id="video" width="640" height="480" autoplay></video>
+    <p id="handStatus" class="not-detected">Hand not detected</p>
+
+    <script>
+        const video = document.getElementById('video');
+        const handStatus = document.getElementById('handStatus');
+        
+        // Access the webcam
+        async function setupCamera() {
+            const stream = await navigator.mediaDevices.getUserMedia({
+                video: true,
+            });
+            video.srcObject = stream;
+        }
+
+        // Load the Handpose model
+        async function loadHandposeModel() {
+            try {
+                const model = await handpose.load();  // Loading directly from CDN
+                detectHand(model);
+            } catch (error) {
+                console.error("Error loading model:", error);
+                handStatus.textContent = 'Model loading failed!';
+            }
+        }
+
+        // Detect hand in the video
+        async function detectHand(model) {
+            const predictions = await model.estimateHands(video);
+            if (predictions.length > 0) {
+                handStatus.textContent = 'Hand detected';
+                handStatus.classList.remove('not-detected');
+            } else {
+                handStatus.textContent = 'Hand not detected';
+                handStatus.classList.add('not-detected');
+            }
+            requestAnimationFrame(() => detectHand(model));
+        }
+
+        // Initialize the camera and model
+        setupCamera();
+        loadHandposeModel();
+    </script>
+</body>
+</html>
